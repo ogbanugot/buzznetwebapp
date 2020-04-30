@@ -1,0 +1,171 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home";
+}
+
+<h3>Database</h3>
+
+@if (Model.DatabaseFiles.Count == 0)
+{
+    <p>
+        No files are available.
+    </p>
+}
+else
+{
+    <table>
+        <thead>
+            <tr>
+                <th></th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DatabaseFiles[0].UntrustedName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DatabaseFiles[0].UntrustedNameDataset)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DatabaseFiles[0].Note)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DatabaseFiles[0].UploadDT)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DatabaseFiles[0].Size)
+                </th>
+                <th>
+                    <code>FileStreamResult</code> from database
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var file in Model.DatabaseFiles)
+            {
+                <tr>
+                    <td>
+                        <a asp-page="./DeleteDbFile" asp-route-id="@file.Id">Delete</a>
+                    </td>
+                    <td>
+                        <b>@file.UntrustedName</b>
+                    </td>
+                    <td>
+                        @file.UntrustedNameDataset
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => file.Note)
+                    </td>
+                    <td class="text-center">
+                        @Html.DisplayFor(modelItem => file.UploadDT)
+                    </td>
+                    <td class="text-center">
+                        @Html.DisplayFor(modelItem => file.Size)
+                    </td>
+                    <td class="text-center">
+                        <a asp-page-handler="DownloadDb" asp-route-id="@file.Id">Download</a>
+                    </td>
+                    <td class="text-center">
+                        <a asp-page="./TestDB" asp-route-id="@file.Id">Test</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+<h3>Disk</h3>
+<h5>Model files</h5>
+@if (Model.ModelFiles.Count() == 0)
+{
+    <p>
+        No files are available.
+    </p>
+}
+else
+{
+    <table>
+        <thead>
+            <tr>
+                <th></th>
+                <th>
+                    Name / Path
+                </th>
+                <th>
+                    Size (bytes)
+                </th>
+                <th>
+                    <code>PhysicalFileResult</code> from storage
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var file in Model.ModelFiles)
+            {
+            <tr>
+                <td>
+                    <a asp-page="./DeletePhysicalFile" asp-route-fileName="@file.Name">Delete</a>
+                </td>
+                <td>
+                    <b>@file.Name</b><br>
+                    @file.PhysicalPath
+                </td>
+                <td class="text-center">
+                    @file.Length.ToString("N0")
+                </td>
+                <td class="text-center">
+                    <a asp-page-handler="DownloadPhysical" asp-route-physicalpath="@file.PhysicalPath">Download</a>
+                </td>
+                <td>
+                    <a asp-page="./TestPhysical" asp-route-fileName="@file.Name">Test</a>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+}
+
+<h5>Dataset files</h5>
+@if (Model.DataFiles.Count() == 0)
+{
+    <p>
+        No files are available.
+    </p>
+}
+else
+{
+    <table>
+        <thead>
+            <tr>
+                <th></th>
+                <th>
+                    Name / Path
+                </th>
+                <th>
+                    Size (bytes)
+                </th>
+                <th>
+                    <code>PhysicalFileResult</code> from storage
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var file in Model.DataFiles)
+            {
+                <tr>
+                    <td>
+                        <a asp-page="./DeletePhysicalFile" asp-route-fileName="@file.Name">Delete</a>
+                    </td>
+                    <td>
+                        <b>@file.Name</b><br>
+                        @file.PhysicalPath
+                    </td>
+                    <td class="text-center">
+                        @file.Length.ToString("N0")
+                    </td>
+                    <td class="text-center">
+                        <a asp-page-handler="DownloadPhysical" asp-route-physicalPath="@file.PhysicalPath">Download</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

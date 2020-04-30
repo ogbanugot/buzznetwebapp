@@ -1,0 +1,22 @@
+﻿@page
+@{
+    ViewData["Title"] = "Load";
+}
+<h3>Upload model weights or dataset</h3>
+    <ul>
+        <li>
+            Click any of the upload scenarios to begin. 
+            <ul>
+                <li><a asp-page="/BufferedSingleFileUploadDb">Upload Model weight file only</a></li>
+                <li><a asp-page="/BufferedDoubleFileUploadDb">Upload Model weight file and dataset</a></li>
+                <li><a asp-page="/BufferedSingleFileUploadPhysical">Upload dataset only</a></li>
+            </ul>
+        </li>
+        @*<li>
+            Physical storage upload
+            <ul>
+                <li><a asp-page="/BufferedSingleFileUploadPhysical">Upload Model weight file</a></li>
+                <li><a asp-page="/BufferedDoubleFileUploadPhysical">Upload Model weight file and dataset</a></li>
+            </ul>
+        </li>*@
+    </ul>

@@ -1,0 +1,59 @@
+﻿@page "{id:int}"
+@model BuzznetApp.Pages.TestDBModel
+@{
+    ViewData["Title"] = "TestDB";
+}
+<h6>Test</h6>
+<div class="row">
+    <div class="col-2">Model File</div>
+    <div class="col-4"><input type="text" id="model" value=@Model.MFile.UntrustedName></div>
+</div>
+<div class="row">
+    <div class="col-2">Dataset File</div>
+    <div class="col-4"><input type="text" id="dataset" value=@Model.MFile.UntrustedNameDataset></div>
+</div>
+<dl>    
+    <dt>
+        @Html.DisplayNameFor(model => model.MFile.Note)
+    </dt>
+    <dd>
+        @Html.DisplayFor(model => model.MFile.Note)
+    </dd>
+    <dt>
+        @Html.DisplayNameFor(model => model.MFile.Size)
+    </dt>
+    <dd>
+        @Html.DisplayFor(model => model.MFile.Size)
+    </dd>
+    <dt>
+        @Html.DisplayNameFor(model => model.MFile.UploadDT)
+    </dt>
+    <dd>
+        @Html.DisplayFor(model => model.MFile.UploadDT)
+    </dd>
+</dl>
+<canvas id="SmallCanvas" width="28" height="28" style="border:1px solid #d3d3d3;">
+    Your browser does not support the HTML5 canvas tag.
+</canvas>
+<canvas id="BigCanvas" width="280" height="280" style="border:1px solid #d3d3d3;">
+    Your browser does not support the HTML5 canvas tag.
+</canvas>
+<div class="sidediv">
+    <div>
+        <label>Prediction</label>
+        <textarea type="text" id="predict" cols="2" rows="2" readonly></textarea>
+    </div>
+    <br />
+    <div>
+        <label>Target</label>
+        <textarea type="text" id="target" cols="2" rows="2" readonly></textarea>
+    </div>
+</div>
+<div class="col-4">
+    <button type="button" class="btn btn-primary" id="predictButton">
+        Next Image
+    </button>
+</div>
+<script src="~/js/signalr/dist/browser/signalr.js"></script>
+<script src="~/js/testdb.js"></script>
+

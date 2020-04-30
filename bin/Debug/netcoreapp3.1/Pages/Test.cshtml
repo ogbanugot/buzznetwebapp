@@ -1,0 +1,30 @@
+﻿@page
+@{
+    ViewData["Title"] = "Test";
+}
+<p id="test"></p>
+<canvas id="SmallCanvas" width="28" height="28" style="border:1px solid #d3d3d3;">
+    Your browser does not support the HTML5 canvas tag.
+</canvas>
+<canvas id="BigCanvas" width="280" height="280" style="border:1px solid #d3d3d3;">
+    Your browser does not support the HTML5 canvas tag.
+</canvas>
+<div class="sidediv">
+    <div>
+        <label>Prediction</label>
+        <textarea type="text" id="predict" cols="2" rows="2" readonly></textarea>
+    </div>
+    <br />
+    <div>
+        <label>Target</label>
+        <textarea type="text" id="target" cols="2" rows="2" readonly></textarea>
+    </div>
+</div>
+<div class="col-4">
+    <button type="button" class="btn btn-primary" id="predictButton">
+        Next Image
+    </button>
+</div>
+<script src="~/js/signalr/dist/browser/signalr.js"></script>
+<script src="~/js/test.js"></script>
+

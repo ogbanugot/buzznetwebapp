@@ -1,0 +1,60 @@
+﻿@page "{fileName}"
+@model BuzznetApp.Pages.TestPhysicalModel
+@{
+    ViewData["Title"] = "TestPhysical";
+}
+
+<h6>Choose Dataset</h6>
+<div class="row">
+    <div class="col-2">Model File</div>
+    <div class="col-4"><input type="text" id="model" value=@Model.MFile.PhysicalPath></div>
+</div>
+<div id="choice" class="container" style="display:block">
+    <div class="row">
+        <div class="col-2">Choose dataset</div>
+        <select id="dataset">
+            <option></option>
+            <option value="MNIST">MNIST</option>
+            <option value="CFAIR">CFAIR</option>
+            @if (Model.DataFiles.Count() != 0)
+            {
+                @foreach (var file in Model.DataFiles)
+                {
+                    <option value=@file.PhysicalPath>@file.PhysicalPath</option>
+                }
+            }
+        </select>
+    </div>
+    <div id="send" class="row">
+        <div class="col-6">
+            <button type="button" class="btn btn-primary" id="sendButton">Test</button>
+        </div>
+    </div>
+</div>
+<div id="canvas" class="container" style="display:none">
+    <canvas id="SmallCanvas" width="28" height="28" style="border:1px solid #d3d3d3;">
+        Your browser does not support the HTML5 canvas tag.
+    </canvas>
+    <canvas id="BigCanvas" width="280" height="280" style="border:1px solid #d3d3d3;">
+        Your browser does not support the HTML5 canvas tag.
+    </canvas>
+    <div class="sidediv">
+        <div>
+            <label>Prediction</label>
+            <textarea type="text" id="predict" cols="2" rows="2" readonly></textarea>
+        </div>
+        <br />
+        <div>
+            <label>Target</label>
+            <textarea type="text" id="target" cols="2" rows="2" readonly></textarea>
+        </div>
+    </div>
+    <div class="col-4">
+        <button type="button" class="btn btn-primary" id="predictButton">
+            Next Image
+        </button>
+    </div>
+</div>
+
+<script src="~/js/signalr/dist/browser/signalr.js"></script>
+<script src="~/js/testphy.js"></script>
